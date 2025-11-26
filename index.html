@@ -10,6 +10,7 @@
   --secondary: #16213e;
   --accent: #2e7d32;
   --ms-color: #9c27b0;
+  --danger: #f44336;
   --text: #f0f0f0;
   --text-secondary: #b0b0b0;
   --card-bg: rgba(255, 255, 255, 0.08);
@@ -100,7 +101,7 @@ select, input {
   font-weight:500;
   transition: all 0.3s ease;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Cc3b2e724c9c14e64564e08de2c617eaf%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638996994434288255%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=phxYuZBHBJfxAzwIKjJU8zRAGcUU%2F35kGoGsLEoAZYA%3D&reserved=0' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Caa9c1ac14a4d4795f2c508de2cc7a165%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638997433104689583%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=sAtB9gQlyxthFBgW2In5Iq52RUQCW5WwmVPLL1e8VAE%3D&reserved=0' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 18px center;
   background-size: 22px;
@@ -171,7 +172,26 @@ select:focus, input:focus {
   letter-spacing: 0.5px;
 }
 
-.save-btn:active, .note-value-btn:active {
+.clear-btn {
+  width: 25%;
+  background: var(--danger);
+  font-size:18px;
+  padding:20px 10px;
+  border-radius:var(--border-radius);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+  border: none;
+  cursor:pointer;
+  font-weight:700;
+  color: white;
+  opacity:0;
+  animation:fadeIn 1s ease forwards;
+  animation-delay:0.2s;
+  transition: all 0.3s ease;
+  min-height:64px;
+  letter-spacing: 0.5px;
+}
+
+.save-btn:active, .note-value-btn:active, .clear-btn:active {
   transform: translateY(2px);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4); }
 
@@ -184,6 +204,13 @@ select:focus, input:focus {
 
 .note-value-btn:disabled {
   background: rgba(156, 39, 176, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.clear-btn:disabled {
+  background: rgba(244, 67, 54, 0.5);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -460,13 +487,13 @@ select:focus, input:focus {
     min-height: 60px;
   }
   
-  .save-btn, .note-value-btn {
+  .save-btn, .note-value-btn, .clear-btn {
     padding: 18px;
     font-size: 20px;
     min-height: 60px;
   }
   
-  .note-value-btn {
+  .note-value-btn, .clear-btn {
     font-size: 18px;
     padding: 18px 8px;
   }
@@ -618,7 +645,8 @@ select option {
 <!-- NY KNAPP-LAYOUT -->
 <div class="buttons-container">
   <button class="note-value-btn" id="noteValueBtn" onclick="openNumericKeyboard()">Notera värde</button>
-  <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button> </div>
+  <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button>
+  <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa formulär</button> </div>
 
 <div class="footer">
   Mätaravläsningen &copy; Max 2025
@@ -666,6 +694,11 @@ select option {
 let allData = [];
 let currentNumber = "0";
 let meterValue = null;
+let savedSelections = {
+    uppdrag: '',
+    fastighet: '',
+    adress: ''
+};
 
 // NUMERISKT TANGENTBORD FUNKTIONER
 function openNumericKeyboard() {
@@ -714,6 +747,58 @@ function normalizeAdress(value) {
     return String(value).trim();
 }
 
+// SPARA VALDA VÄRDEN
+function saveSelections() {
+    savedSelections = {
+        uppdrag: document.getElementById("uppdrag").value,
+        fastighet: document.getElementById("fastighet").value,
+        adress: document.getElementById("adress").value
+    };
+    console.log("💾 Sparade val:", savedSelections); }
+
+// ÅTERSTÄLL FORMULÄRET
+function clearForm() {
+    document.getElementById("uppdrag").selectedIndex = 0;
+    document.getElementById("fastighet").selectedIndex = 0;
+    document.getElementById("adress").selectedIndex = 0;
+    document.getElementById("matarnummer").selectedIndex = 0;
+    document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj adress och mätarnummer</span>';
+    
+    meterValue = null;
+    document.getElementById('noteValueBtn').textContent = 'Notera värde';
+    
+    savedSelections = {
+        uppdrag: '',
+        fastighet: '',
+        adress: ''
+    };
+    
+    validateForm();
+    console.log("🧹 Formulär rensat");
+}
+
+// ÅTERSTÄLL SPARADE VÄRDEN EFTER SAVE
+function restoreSelections() {
+    if (savedSelections.uppdrag) {
+        document.getElementById("uppdrag").value = savedSelections.uppdrag;
+        filterFastighet();
+        
+        if (savedSelections.fastighet) {
+            setTimeout(() => {
+                document.getElementById("fastighet").value = savedSelections.fastighet;
+                filterAdress();
+                
+                if (savedSelections.adress) {
+                    setTimeout(() => {
+                        document.getElementById("adress").value = savedSelections.adress;
+                        filterMatarnummer();
+                    }, 100);
+                }
+            }, 100);
+        }
+    }
+}
+
 async function loadData(){
     document.getElementById("loader").style.display="block";
     document.getElementById("app").style.display="none";
@@ -732,9 +817,21 @@ async function loadData(){
         
         fillSelect("uppdrag",[...new Set(allData.map(i=>i.uppdrag).filter(Boolean))]);
         
-        document.getElementById("uppdrag").addEventListener("change", filterFastighet);
-        document.getElementById("fastighet").addEventListener("change", filterAdress);
-        document.getElementById("adress").addEventListener("change", filterMatarnummer);
+        // Återställ sparade värden om de finns
+        restoreSelections();
+        
+        document.getElementById("uppdrag").addEventListener("change", function() {
+            saveSelections();
+            filterFastighet();
+        });
+        document.getElementById("fastighet").addEventListener("change", function() {
+            saveSelections();
+            filterAdress();
+        });
+        document.getElementById("adress").addEventListener("change", function() {
+            saveSelections();
+            filterMatarnummer();
+        });
         document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
         
         document.getElementById("uppdrag").addEventListener("change", validateForm);
@@ -938,12 +1035,9 @@ async function save(){
             modal.classList.remove('show');
         }, 2000);
 
-        // Återställ formuläret och mätarvärdet
-        document.getElementById("uppdrag").selectedIndex = 0;
-        document.getElementById("fastighet").selectedIndex = 0;
-        document.getElementById("adress").selectedIndex = 0;
+        // Återställ bara mätarnummer och värdet, behåll övriga val
         document.getElementById("matarnummer").selectedIndex = 0;
-        document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj adress och mätarnummer</span>';
+        document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj mätarnummer</span>';
         
         // Återställ knappen
         meterValue = null;
@@ -951,6 +1045,8 @@ async function save(){
         
         saveBtn.innerHTML = "Spara avläsning";
         validateForm();
+        
+        console.log("💾 Uppdrag, fastighet och adress bevaras:", savedSelections);
     } catch(err) {
         console.error("❌ Fel vid sparande:", err);
         alert("Kunde inte spara. Försök igen.");
