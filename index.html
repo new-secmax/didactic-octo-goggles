@@ -101,7 +101,7 @@ select, input {
  font-weight:500;
  transition: all 0.3s ease;
  appearance: none;
- background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Ca0ca349c94bf4533656708de2cd68ef3%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638997497231136581%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=i2Q74OaacIaxJ5dOWjKT90%2FpcSFFk5h0MMmBs0ma%2BN8%3D&reserved=0' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Cbc4d00ba27a4434cb29c08de2cdae6e3%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638997515890936004%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=xYYsGkBW2IhwLLfjI%2Fzmfh1DG5BMp0Gd2blen02Vpws%3D&reserved=0' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
  background-repeat: no-repeat;
  background-position: right 18px center;
  background-size: 22px;
@@ -126,7 +126,6 @@ select:focus, input:focus {
  min-height: 64px;
 }
 
-/* NY LAYOUT FÖR KNAPPARNA */
 .buttons-container {
  display: flex;
  gap: 12px;
@@ -154,7 +153,7 @@ select:focus, input:focus {
 }
 
 .note-value-btn {
- width: 40%; /* Större knapp */
+ width: 40%;
  background: var(--ms-color);
  font-size:20px;
  padding:20px 10px;
@@ -216,7 +215,6 @@ select:focus, input:focus {
  box-shadow: none;
 }
 
-/* NUMERISKT TANGENTBORD */
 .numeric-keyboard-overlay {
  position: fixed;
  top: 0;
@@ -422,32 +420,6 @@ select:focus, input:focus {
  fill: none;
 }
 
-.status-indicator {
- display: inline-flex;
- align-items: center;
- gap: 8px;
- padding: 8px 16px;
- border-radius: 20px;
- font-size: 18px;
- font-weight: 600;
- margin-left: 12px;
-}
-
-.status-ok {
- background: rgba(46, 125, 50, 0.3);
- color: #4CAF50;
-}
-
-.status-not-available {
- background: rgba(255, 152, 0, 0.3);
- color: #FF9800;
-}
-
-.status-fault {
- background: rgba(244, 67, 54, 0.3);
- color: #F44336;
-}
-
 .footer {
  text-align: center;
  padding: 20px;
@@ -456,7 +428,6 @@ select:focus, input:focus {
  margin-top: 16px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 480px) {
  body {
    font-size: 18px;
@@ -527,7 +498,6 @@ select:focus, input:focus {
  }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
  width: 10px;
 }
@@ -545,13 +515,11 @@ select:focus, input:focus {
  background: rgba(46, 125, 50, 0.8);
 }
 
-/* Fokusindikator för tillgänglighet */
 select:focus, input:focus, button:focus {
  outline: 2px solid var(--accent);
  outline-offset: 2px;
 }
 
-/* Förbättring för dropdown-menyer */
 select option {
  background: var(--secondary);
  color: var(--text);
@@ -625,7 +593,6 @@ select option {
 </div>
 </div>
 
-<!-- NY KNAPP-LAYOUT -->
 <div class="buttons-container">
  <button class="note-value-btn" id="noteValueBtn" onclick="openNumericKeyboard()">Notera värde</button>  <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button>  <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa formulär</button> </div>
 
@@ -634,7 +601,6 @@ select option {
 </div>
 </div>
 
-<!-- NUMERISKT TANGENTBORD -->
 <div id="numericKeyboard" class="numeric-keyboard-overlay">  <div class="numeric-keyboard">
    <div class="keyboard-header">
      <div class="keyboard-title">Mätarvärde</div>
@@ -670,8 +636,8 @@ select option {
 <div id="savedModal" class="modal-overlay"> <div class="modal-content"> <div class="checkmark-circle"> <svg class="checkmark" viewBox="0 0 52 52"> <polyline points="14,27 22,35 38,19" /> </svg> </div> <p class="saved-text">Avläsning Sparad!</p> <p class="saved-subtext">Informationen har uppdaterats</p> </div> </div>
 
 <script>
-// KORREKT API URL MED DIN APPS SCRIPT
-const API_URL = "https://script.google.com/macros/s/AKfycbymZ7YkbKl4QNu3vjkNmry3lGiKLO6HK5DOoz8l7HAjBtnfs05oNhEuZpjhaG5SBV3D/exec";
+// KORREKT API URL
+const API_URL = "https://eur02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fscript.google.com%2Fmacros%2Fs%2FAKfycbymZ7YkbKl4QNu3vjkNmry3lGiKLO6HK5DOoz8l7HAjBtnfs05oNhEuZpjhaG5SBV3D%2Fexec&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Cbc4d00ba27a4434cb29c08de2cdae6e3%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638997515890969827%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=NRfEb4htf9lAca1l7zaG%2FHfmsiwQ1m%2FMzMAQv0rfiNQ%3D&reserved=0";
 let allData = [];
 let currentNumber = "0";
 let meterValue = null;
@@ -715,7 +681,6 @@ function submitNumber() {
    const numberValue = parseFloat(currentNumber);
    meterValue = numberValue;
 
-   // Uppdatera knappens text
    const noteValueBtn = document.getElementById('noteValueBtn');
    noteValueBtn.textContent = `${numberValue}`;
 
@@ -728,7 +693,6 @@ function normalizeAdress(value) {
    return String(value).trim();
 }
 
-// SPARA VALDA VÄRDEN
 function saveSelections() {
    savedSelections = {
        uppdrag: document.getElementById("uppdrag").value,
@@ -737,7 +701,6 @@ function saveSelections() {
    };
    console.log("💾 Sparade val:", savedSelections); }
 
-// ÅTERSTÄLL FORMULÄRET
 function clearForm() {
    document.getElementById("uppdrag").selectedIndex = 0;
    document.getElementById("fastighet").selectedIndex = 0;
@@ -758,7 +721,6 @@ function clearForm() {
    console.log("🧹 Formulär rensat");
 }
 
-// ÅTERSTÄLL SPARADE VÄRDEN EFTER SAVE
 function restoreSelections() {
    if (savedSelections.uppdrag) {
        document.getElementById("uppdrag").value = savedSelections.uppdrag;
@@ -780,53 +742,58 @@ function restoreSelections() {
    }
 }
 
-async function loadData(){
+// NY JSONP LOAD DATA FUNKTION
+function loadData(){
    document.getElementById("loader").style.display="block";
    document.getElementById("app").style.display="none";
 
-   try {
-       const res = await fetch(API_URL);
-       const json = await res.json();
-       allData = json.data || [];
-
-       console.log("📦 FULL JSON RESPONSE:", JSON.stringify(json, null, 2));
-       console.log("📊 Total antal poster:", allData.length);
-
-       if (allData.length > 0) {
-           console.log("🔍 FÖRSTA POSTEN:", JSON.stringify(allData[0], null, 2));
+   const callbackName = 'jsonpCallback_' + Date.now();
+   
+   window[callbackName] = function(response) {
+       delete window[callbackName];
+       
+       if (response.status === 'success') {
+           allData = response.data || [];
+           console.log("✅ Data loaded via JSONP:", allData.length, "items");
+           
+           fillSelect("uppdrag",[...new Set(allData.map(i=>i.uppdrag).filter(Boolean))]);
+           restoreSelections();
+           
+           document.getElementById("uppdrag").addEventListener("change", function() {
+               saveSelections();
+               filterFastighet();
+           });
+           document.getElementById("fastighet").addEventListener("change", function() {
+               saveSelections();
+               filterAdress();
+           });
+           document.getElementById("adress").addEventListener("change", function() {
+               saveSelections();
+               filterMatarnummer();
+           });
+           document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
+           
+           document.getElementById("uppdrag").addEventListener("change", validateForm);
+           document.getElementById("fastighet").addEventListener("change", validateForm);
+           document.getElementById("adress").addEventListener("change", validateForm);
+           document.getElementById("matarnummer").addEventListener("change", validateForm);
+           
+       } else {
+           console.error("❌ Error from server:", response.message);
        }
-
-       fillSelect("uppdrag",[...new Set(allData.map(i=>i.uppdrag).filter(Boolean))]);
-
-       // Återställ sparade värden om de finns
-       restoreSelections();
-
-       document.getElementById("uppdrag").addEventListener("change", function() {
-           saveSelections();
-           filterFastighet();
-       });
-       document.getElementById("fastighet").addEventListener("change", function() {
-           saveSelections();
-           filterAdress();
-       });
-       document.getElementById("adress").addEventListener("change", function() {
-           saveSelections();
-           filterMatarnummer();
-       });
-       document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
-
-       document.getElementById("uppdrag").addEventListener("change", validateForm);
-       document.getElementById("fastighet").addEventListener("change", validateForm);
-       document.getElementById("adress").addEventListener("change", validateForm);
-       document.getElementById("matarnummer").addEventListener("change", validateForm);
-
-       console.log("✅ Data loaded, event listeners attached");
-   } catch (error) {
-       console.error("❌ Error loading data:", error);
-   }
-
-   document.getElementById("loader").style.display="none";
-   document.getElementById("app").style.display="block";
+       
+       document.getElementById("loader").style.display="none";
+       document.getElementById("app").style.display="block";
+   };
+   
+   const script = document.createElement('script');
+   script.src = API_URL + '?callback=' + callbackName;
+   script.onerror = function() {
+       console.error("❌ JSONP failed");
+       document.getElementById("loader").style.display="none";
+       document.getElementById("app").style.display="block";
+   };
+   document.body.appendChild(script);
 }
 
 function filterFastighet(){
@@ -918,7 +885,6 @@ function updateLastChecked(){
 
    const actualAdress = normalizeAdress(selectedAdress);
 
-   // Hitta senaste avläsningen för denna mätare
    const readings = allData.filter(item =>
        item.uppdrag === uppdrag &&
        item.fastighet === fastighet &&
@@ -928,7 +894,6 @@ function updateLastChecked(){
    );
 
    if (readings.length > 0) {
-       // Sortera efter datum (senaste först)
        readings.sort((a, b) => new Date(b.datum_tid) - new Date(a.datum_tid));
        const latest = readings[0];
        latestDiv.innerHTML = `<strong>${latest.avläst_värde}</strong> (${latest.datum_tid})`;
@@ -1006,7 +971,7 @@ async function save(){
        console.log("✅ Svar från Google Sheets:", result);
 
        // Ladda om data för att få senaste avläsningen
-       await loadData();
+       loadData();
        updateLastChecked();
 
        const modal = document.getElementById("savedModal");
@@ -1016,11 +981,9 @@ async function save(){
            modal.classList.remove('show');
        }, 2000);
 
-       // Återställ bara mätarnummer och värdet, behåll övriga val
        document.getElementById("matarnummer").selectedIndex = 0;
        document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj mätarnummer</span>';
 
-       // Återställ knappen
        meterValue = null;
        document.getElementById('noteValueBtn').textContent = 'Notera värde';
 
