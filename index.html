@@ -639,7 +639,7 @@ select option {
 <div id="savedModal" class="modal-overlay"> <div class="modal-content"> <div class="checkmark-circle"> <svg class="checkmark" viewBox="0 0 52 52"> <polyline points="14,27 22,35 38,19" /> </svg> </div> <p class="saved-text">Avläsning Sparad!</p> <p class="saved-subtext">Informationen har uppdaterats</p> </div> </div>
 
 <script>
-// KORREKT API URL
+// SAMMA API URL SOM JORDFELSBYTAR-APPEN
 const API_URL = "https://script.google.com/macros/s/AKfycbymZ7YkbKl4QNu3vjkNmry3lGiKLO6HK5DOoz8l7HAjBtnfs05oNhEuZpjhaG5SBV3D/exec";
 let allData = [];
 let currentNumber = "0";
@@ -745,7 +745,7 @@ function restoreSelections() {
    }
 }
 
-// LOAD DATA FUNKTION
+// SAMMA LOAD DATA FUNKTION SOM JORDFELSBYTAR-APPEN
 async function loadData(){
    document.getElementById("loader").style.display="block";
    document.getElementById("app").style.display="none";
@@ -918,6 +918,7 @@ function validateForm() {
    }
 }
 
+// SAMMA SAVE FUNKTION SOM JORDFELSBYTAR-APPEN
 async function save(){
    const uppdrag = document.getElementById("uppdrag").value;
    const fastighet = document.getElementById("fastighet").value;
