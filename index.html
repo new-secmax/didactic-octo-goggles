@@ -2,7 +2,10 @@
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Mätaravläsning</title> <meta name="description" content="Mätaravläsning enkelt och effektivt"> <meta name="theme-color" content="#1a1a2e">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mätaravläsning</title>
+<meta name="description" content="Mätaravläsning enkelt och effektivt">
+<meta name="theme-color" content="#1a1a2e">
 
 <style>
 :root {
@@ -22,10 +25,10 @@
   box-sizing: border-box;
 }
 
-body {
-  margin:0;
-  padding:0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+body { 
+  margin:0; 
+  padding:0; 
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: var(--text);
   touch-action: manipulation;
@@ -34,17 +37,17 @@ body {
   font-size: 20px;
 }
 
-.topbar {
-  position: sticky;
-  top:0;
-  width:100%;
-  text-align:center;
+.topbar { 
+  position: sticky; 
+  top:0; 
+  width:100%; 
+  text-align:center; 
   padding: 20px 12px;
   font-size: 26px;
-  font-weight:700;
+  font-weight:700; 
   background: rgba(15, 52, 96, 0.9);
   backdrop-filter: blur(10px);
-  z-index:1000;
+  z-index:1000; 
   box-shadow: var(--shadow);
   color: var(--text);
   display: flex;
@@ -54,20 +57,20 @@ body {
   letter-spacing: 0.5px;
 }
 
-.app {
-  max-width:100%;
-  margin:16px auto 10px;
-  display:none;
+.app { 
+  max-width:100%; 
+  margin:16px auto 10px; 
+  display:none; 
   padding: 0 16px;
 }
 
-.card {
+.card { 
   background: var(--card-bg);
   padding: 20px;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   margin-bottom: 20px;
-  opacity:0;
+  opacity:0; 
   animation:fadeIn 0.7s ease forwards;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -77,9 +80,9 @@ body {
   margin-bottom: 16px;
 }
 
-label {
-  display:block;
-  font-weight:600;
+label { 
+  display:block; 
+  font-weight:600; 
   margin-bottom:10px;
   color: var(--text);
   font-size: 22px;
@@ -88,20 +91,20 @@ label {
   gap: 10px;
 }
 
-select, input {
-  width:100%;
+select, input { 
+  width:100%; 
   padding:18px;
-  border-radius:12px;
+  border-radius:12px; 
   border: 2px solid rgba(255, 255, 255, 0.15);
   background: rgba(0, 0, 0, 0.25);
   color: var(--text);
   font-size:22px;
-  margin-bottom:8px;
+  margin-bottom:8px; 
   min-height:64px;
   font-weight:500;
   transition: all 0.3s ease;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Caa9c1ac14a4d4795f2c508de2cc7a165%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638997433104689583%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=sAtB9gQlyxthFBgW2In5Iq52RUQCW5WwmVPLL1e8VAE%3D&reserved=0' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 18px center;
   background-size: 22px;
@@ -110,7 +113,8 @@ select, input {
 select:focus, input:focus {
   outline:none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.3); }
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.3);
+}
 
 .last-checked-display {
   padding:18px;
@@ -134,20 +138,20 @@ select:focus, input:focus {
   width: 100%;
 }
 
-.save-btn {
+.save-btn { 
   flex: 1;
   background: var(--accent);
   font-size:22px;
   padding:20px;
-  border-radius:var(--border-radius);
+  border-radius:var(--border-radius); 
   box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
   border: none;
-  cursor:pointer;
-  font-weight:700;
+  cursor:pointer; 
+  font-weight:700; 
   color: white;
-  opacity:0;
-  animation:fadeIn 1s ease forwards;
-  animation-delay:0.2s;
+  opacity:0; 
+  animation:fadeIn 1s ease forwards; 
+  animation-delay:0.2s; 
   transition: all 0.3s ease;
   min-height:64px;
   letter-spacing: 0.5px;
@@ -191,9 +195,10 @@ select:focus, input:focus {
   letter-spacing: 0.5px;
 }
 
-.save-btn:active, .note-value-btn:active, .clear-btn:active {
+.save-btn:active, .note-value-btn:active, .clear-btn:active { 
   transform: translateY(2px);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4); }
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
 
 .save-btn:disabled {
   background: rgba(46, 125, 50, 0.5);
@@ -243,7 +248,8 @@ select:focus, input:focus {
   box-shadow: var(--shadow);
   width: 100%;
   max-width: 400px;
-  border: 1px solid rgba(255, 255, 255, 0.1); }
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 .keyboard-header {
   text-align: center;
@@ -296,12 +302,14 @@ select:focus, input:focus {
   cursor: pointer;
   transition: all 0.2s ease;
   min-height: 70px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
 
 .keyboard-key:active {
   background: var(--accent);
   transform: translateY(2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
 .keyboard-key.wide {
   flex: 2;
@@ -316,20 +324,21 @@ select:focus, input:focus {
   font-size: 20px;
 }
 
-.fade-in {
-  opacity:0;
-  animation:fadeIn 0.7s ease forwards;
+.fade-in { 
+  opacity:0; 
+  animation:fadeIn 0.7s ease forwards; 
 }
 
-@keyframes fadeIn {
-  0%{opacity:0; transform:translateY(10px);}
-  100%{opacity:1; transform:translateY(0);} }
+@keyframes fadeIn { 
+  0%{opacity:0; transform:translateY(10px);} 
+  100%{opacity:1; transform:translateY(0);} 
+}
 
-.loader {
+.loader { 
   width:70px;
   height:70px;
-  margin:50px auto;
-  border-radius:50%;
+  margin:50px auto; 
+  border-radius:50%; 
   border: 5px solid rgba(15, 52, 96, 0.3);
   border-top: 5px solid var(--accent);
   animation: spin 1s linear infinite;
@@ -368,11 +377,13 @@ select:focus, input:focus {
   animation: scaleIn 0.3s ease;
   max-width: 90%;
   width: 340px;
-  border: 1px solid rgba(255, 255, 255, 0.1); }
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 @keyframes scaleIn {
   0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; } }
+  100% { transform: scale(1); opacity: 1; }
+}
 
 .checkmark-circle {
   width: 100px;
@@ -383,7 +394,8 @@ select:focus, input:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.5); }
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.5);
+}
 
 .checkmark {
   width: 50px;
@@ -391,7 +403,8 @@ select:focus, input:focus {
   stroke: white;
   stroke-width: 4;
   fill: none;
-  animation: checkmarkDraw 0.5s ease forwards; }
+  animation: checkmarkDraw 0.5s ease forwards;
+}
 
 @keyframes checkmarkDraw {
   0% {
@@ -535,7 +548,8 @@ select:focus, input:focus {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05); }
+  background: rgba(255, 255, 255, 0.05);
+}
 
 ::-webkit-scrollbar-thumb {
   background: var(--accent);
@@ -646,7 +660,8 @@ select option {
 <div class="buttons-container">
   <button class="note-value-btn" id="noteValueBtn" onclick="openNumericKeyboard()">Notera värde</button>
   <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button>
-  <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa formulär</button> </div>
+  <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa formulär</button>
+</div>
 
 <div class="footer">
   Mätaravläsningen &copy; Max 2025
@@ -687,10 +702,21 @@ select option {
   </div>
 </div>
 
-<div id="savedModal" class="modal-overlay"> <div class="modal-content"> <div class="checkmark-circle"> <svg class="checkmark" viewBox="0 0 52 52"> <polyline points="14,27 22,35 38,19" /> </svg> </div> <p class="saved-text">Avläsning Sparad!</p> <p class="saved-subtext">Informationen har uppdaterats</p> </div> </div>
+<div id="savedModal" class="modal-overlay">
+<div class="modal-content">
+<div class="checkmark-circle">
+<svg class="checkmark" viewBox="0 0 52 52">
+<polyline points="14,27 22,35 38,19" />
+</svg>
+</div>
+<p class="saved-text">Avläsning Sparad!</p>
+<p class="saved-subtext">Informationen har uppdaterats</p>
+</div>
+</div>
 
 <script>
-// BYT UT DENNA URL TILL DIN NYA APPS SCRIPT URL NÄR DU SKAPAT DEN const API_URL = "https://script.google.com/macros/s/AKfycbzlkVgNgJiieb3Xry3alMnx1Dmh03x1Mg_TWYhtg5nOqFE2iCLXhHZReXzczxLwW4Q3/exec";
+// KORRIGERAD API_URL MED CITATIONSTEcken
+const API_URL = "https://script.google.com/macros/s/AKfycbzlkVgNgJiieb3Xry3alMnx1Dmh03x1Mg_TWYhtg5nOqFE2iCLXhHZReXzczxLwW4Q3/exec";
 let allData = [];
 let currentNumber = "0";
 let meterValue = null;
@@ -717,7 +743,8 @@ function addNumber(number) {
     } else {
         currentNumber += number.toString();
     }
-    document.getElementById('keyboardDisplay').textContent = currentNumber; }
+    document.getElementById('keyboardDisplay').textContent = currentNumber;
+}
 
 function addDecimal() {
     if (!currentNumber.includes('.')) {
@@ -728,7 +755,8 @@ function addDecimal() {
 
 function clearDisplay() {
     currentNumber = "0";
-    document.getElementById('keyboardDisplay').textContent = currentNumber; }
+    document.getElementById('keyboardDisplay').textContent = currentNumber;
+}
 
 function submitNumber() {
     const numberValue = parseFloat(currentNumber);
@@ -754,7 +782,8 @@ function saveSelections() {
         fastighet: document.getElementById("fastighet").value,
         adress: document.getElementById("adress").value
     };
-    console.log("💾 Sparade val:", savedSelections); }
+    console.log("💾 Sparade val:", savedSelections);
+}
 
 // ÅTERSTÄLL FORMULÄRET
 function clearForm() {
@@ -842,6 +871,7 @@ async function loadData(){
         console.log("✅ Data loaded, event listeners attached");
     } catch (error) {
         console.error("❌ Error loading data:", error);
+        document.getElementById("latest").innerHTML = '<span style="color:#ff6b6b;">Kunde inte ladda data</span>';
     }
 
     document.getElementById("loader").style.display="none";
@@ -1018,46 +1048,4 @@ async function save(){
         const response = await fetch(API_URL, {
             method:"POST",
             headers:{"Content-Type":"application/x-www-form-urlencoded"},
-            body: new URLSearchParams(body)
-        });
-
-        const result = await response.json();
-        console.log("✅ Svar från Google Sheets:", result);
-        
-        // Ladda om data för att få senaste avläsningen
-        await loadData();
-        updateLastChecked();
-        
-        const modal = document.getElementById("savedModal");
-        modal.classList.add('show');
-        
-        setTimeout(() => {
-            modal.classList.remove('show');
-        }, 2000);
-
-        // Återställ bara mätarnummer och värdet, behåll övriga val
-        document.getElementById("matarnummer").selectedIndex = 0;
-        document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj mätarnummer</span>';
-        
-        // Återställ knappen
-        meterValue = null;
-        document.getElementById('noteValueBtn').textContent = 'Notera värde';
-        
-        saveBtn.innerHTML = "Spara avläsning";
-        validateForm();
-        
-        console.log("💾 Uppdrag, fastighet och adress bevaras:", savedSelections);
-    } catch(err) {
-        console.error("❌ Fel vid sparande:", err);
-        alert("Kunde inte spara. Försök igen.");
-        const saveBtn = document.getElementById("saveBtn");
-        saveBtn.innerHTML = "Spara avläsning";
-        validateForm();
-    }
-}
-
-// Initiera appen
-loadData();
-</script>
-</body>
-</html>
+            body:
