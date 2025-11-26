@@ -546,7 +546,8 @@ select option {
 <body>
 <div class="topbar">
  <svg class="icon" width="28" height="28" viewBox="0 0 24 24">
-   <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>  </svg>  Mätaravläsning </div> <div id="loader" class="loader"></div>
+   <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>  </svg>  Mätaravläsning </div> 
+<div id="loader" class="loader"></div>
 
 <div class="app" id="app">
 <div class="card">
@@ -554,13 +555,17 @@ select option {
 <label>
  <svg class="icon" width="26" height="26" viewBox="0 0 24 24">
    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-   <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>  </svg>  Uppdrag </label> <select id="uppdrag"></select> </div>
+   <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>  </svg>  Uppdrag </label> 
+<select id="uppdrag"></select> 
+</div>
 
 <div class="form-group">
 <label>
  <svg class="icon" width="26" height="26" viewBox="0 0 24 24">
    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-   <polyline points="9 22 9 12 15 12 15 22"/>  </svg>  Fastighet </label> <select id="fastighet"></select> </div>
+   <polyline points="9 22 9 12 15 12 15 22"/>  </svg>  Fastighet </label> 
+<select id="fastighet"></select> 
+</div>
 
 <div class="form-group">
 <label>
@@ -592,19 +597,23 @@ select option {
    <line x1="8" y1="2" x2="8" y2="6"/>
    <line x1="3" y1="10" x2="21" y2="10"/>  </svg>  Senast avläst värde:
 </label>
-<div id="latest" class="last-checked-display"></div>
+<div id="latest" class="last-checked-display">Välj mätarnummer för att se senaste värde</div>
 </div>
 </div>
 
 <div class="buttons-container">
- <button class="note-value-btn" id="noteValueBtn" onclick="openNumericKeyboard()">Notera värde</button>  <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button>  <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa formulär</button> </div>
+ <button class="note-value-btn" id="noteValueBtn" onclick="openNumericKeyboard()">Notera värde</button>  
+ <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button>  
+ <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa</button> 
+</div>
 
 <div class="footer">
  Mätaravläsningen &copy; Max 2025
 </div>
 </div>
 
-<div id="numericKeyboard" class="numeric-keyboard-overlay">  <div class="numeric-keyboard">
+<div id="numericKeyboard" class="numeric-keyboard-overlay">  
+ <div class="numeric-keyboard">
    <div class="keyboard-header">
      <div class="keyboard-title">Mätarvärde</div>
      <div class="keyboard-subtitle">Ange mätarvärde</div>
@@ -636,21 +645,26 @@ select option {
  </div>
 </div>
 
-<div id="savedModal" class="modal-overlay"> <div class="modal-content"> <div class="checkmark-circle"> <svg class="checkmark" viewBox="0 0 52 52"> <polyline points="14,27 22,35 38,19" /> </svg> </div> <p class="saved-text">Avläsning Sparad!</p> <p class="saved-subtext">Informationen har uppdaterats</p> </div> </div>
+<div id="savedModal" class="modal-overlay"> 
+ <div class="modal-content"> 
+   <div class="checkmark-circle"> 
+     <svg class="checkmark" viewBox="0 0 52 52"> 
+       <polyline points="14,27 22,35 38,19" /> 
+     </svg> 
+   </div> 
+   <p class="saved-text">Avläsning Sparad!</p> 
+   <p class="saved-subtext">Informationen har uppdaterats</p> 
+ </div> 
+</div>
 
 <script>
-// API URL - SAMMA SOM DIN JORDFELSBYTAR-APP
+// ANVÄND SAMMA URL-SYSTEM SOM DIN JORDFELSBYTAR-APP
 const API_URL = "https://script.google.com/macros/s/AKfycbymZ7YkbKl4QNu3vjkNmry3lGiKLO6HK5DOoz8l7HAjBtnfs05oNhEuZpjhaG5SBV3D/exec";
 let allData = [];
 let currentNumber = "0";
 let meterValue = null;
-let savedSelections = {
-   uppdrag: '',
-   fastighet: '',
-   adress: ''
-};
 
-// NUMERISKT TANGENTBORD FUNKTIONER
+// NUMERISKT TANGENTBORD
 function openNumericKeyboard() {
    currentNumber = meterValue ? meterValue.toString() : "0";
    document.getElementById('keyboardDisplay').textContent = currentNumber;
@@ -685,169 +699,75 @@ function clearDisplay() {
 function submitNumber() {
    const numberValue = parseFloat(currentNumber);
    meterValue = numberValue;
-
    const noteValueBtn = document.getElementById('noteValueBtn');
    noteValueBtn.textContent = `${numberValue}`;
-
    closeNumericKeyboard();
    validateForm();
 }
 
-function normalizeAdress(value) {
-   if (value === "(Ingen adress)" || value == null) return "";
-   return String(value).trim();
-}
+// HUVUDFUNKTIONER - SAMMA SOM JORDFELSBYTAR
+async function loadData(){
+   document.getElementById("loader").style.display = "block";
+   document.getElementById("app").style.display = "none";
 
-function saveSelections() {
-   savedSelections = {
-       uppdrag: document.getElementById("uppdrag").value,
-       fastighet: document.getElementById("fastighet").value,
-       adress: document.getElementById("adress").value
-   };
-   console.log("💾 Sparade val:", savedSelections);
-}
-
-function clearForm() {
-   document.getElementById("uppdrag").selectedIndex = 0;
-   document.getElementById("fastighet").selectedIndex = 0;
-   document.getElementById("adress").selectedIndex = 0;
-   document.getElementById("matarnummer").selectedIndex = 0;
-   document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj adress och mätarnummer</span>';
-
-   meterValue = null;
-   document.getElementById('noteValueBtn').textContent = 'Notera värde';
-
-   savedSelections = {
-       uppdrag: '',
-       fastighet: '',
-       adress: ''
-   };
-
-   validateForm();
-   console.log("🧹 Formulär rensat");
-}
-
-function restoreSelections() {
-   if (savedSelections.uppdrag) {
-       document.getElementById("uppdrag").value = savedSelections.uppdrag;
-       filterFastighet();
-
-       if (savedSelections.fastighet) {
-           setTimeout(() => {
-               document.getElementById("fastighet").value = savedSelections.fastighet;
-               filterAdress();
-
-               if (savedSelections.adress) {
-                   setTimeout(() => {
-                       document.getElementById("adress").value = savedSelections.adress;
-                       filterMatarnummer();
-                   }, 100);
-               }
-           }, 100);
-       }
+   try {
+       const res = await fetch(API_URL);
+       const json = await res.json();
+       allData = json.data || [];
+       
+       console.log("✅ Data loaded:", allData.length, "items");
+       
+       fillSelect("uppdrag", [...new Set(allData.map(i => i.Uppdrag).filter(Boolean))]);
+       
+       // Event listeners
+       document.getElementById("uppdrag").addEventListener("change", filterFastighet);
+       document.getElementById("fastighet").addEventListener("change", filterAdress);
+       document.getElementById("adress").addEventListener("change", filterMatarnummer);
+       document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
+       
+       document.getElementById("uppdrag").addEventListener("change", validateForm);
+       document.getElementById("fastighet").addEventListener("change", validateForm);
+       document.getElementById("adress").addEventListener("change", validateForm);
+       document.getElementById("matarnummer").addEventListener("change", validateForm);
+       
+   } catch (error) {
+       console.error("❌ Error loading data:", error);
    }
-}
 
-// JSONP LOAD DATA - FUNGERAR ALLTID OAVSETT CORS
-function loadData(){
-   document.getElementById("loader").style.display="block";
-   document.getElementById("app").style.display="none";
-
-   const callbackName = 'jsonpCallback_' + Date.now();
-   
-   window[callbackName] = function(response) {
-       delete window[callbackName];
-       
-       if (response.status === 'success') {
-           allData = response.data || [];
-           console.log("✅ Data loaded via JSONP:", allData.length, "items");
-           console.log("📊 Första posten:", allData[0]);
-           
-           fillSelect("uppdrag",[...new Set(allData.map(i=>i.Uppdrag).filter(Boolean))]);
-           restoreSelections();
-           
-           document.getElementById("uppdrag").addEventListener("change", function() {
-               saveSelections();
-               filterFastighet();
-           });
-           document.getElementById("fastighet").addEventListener("change", function() {
-               saveSelections();
-               filterAdress();
-           });
-           document.getElementById("adress").addEventListener("change", function() {
-               saveSelections();
-               filterMatarnummer();
-           });
-           document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
-           
-           document.getElementById("uppdrag").addEventListener("change", validateForm);
-           document.getElementById("fastighet").addEventListener("change", validateForm);
-           document.getElementById("adress").addEventListener("change", validateForm);
-           document.getElementById("matarnummer").addEventListener("change", validateForm);
-           
-       } else {
-           console.error("❌ Error from server:", response.message);
-       }
-       
-       document.getElementById("loader").style.display="none";
-       document.getElementById("app").style.display="block";
-   };
-   
-   const script = document.createElement('script');
-   script.src = API_URL + '?callback=' + callbackName;
-   script.onerror = function() {
-       console.error("❌ JSONP failed");
-       document.getElementById("loader").style.display="none";
-       document.getElementById("app").style.display="block";
-   };
-   document.body.appendChild(script);
+   document.getElementById("loader").style.display = "none";
+   document.getElementById("app").style.display = "block";
 }
 
 function filterFastighet(){
    const uppdrag = document.getElementById("uppdrag").value;
-
    if (!uppdrag) {
        fillSelect("fastighet", []);
        fillSelect("adress", []);
        fillSelect("matarnummer", []);
-       document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj alla fält</span>';
        validateForm();
        return;
    }
-
    const filtered = allData.filter(item => item.Uppdrag === uppdrag);
-   const fastigheter = [...new Set(filtered.map(i=>i.Fastighet).filter(Boolean))];
+   const fastigheter = [...new Set(filtered.map(i => i.Fastighet).filter(Boolean))];
    fillSelect("fastighet", fastigheter);
-
    fillSelect("adress", []);
    fillSelect("matarnummer", []);
-   document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj alla fält</span>';
    validateForm();
 }
 
 function filterAdress(){
    const uppdrag = document.getElementById("uppdrag").value;
    const fastighet = document.getElementById("fastighet").value;
-
    if (!uppdrag || !fastighet) {
        fillSelect("adress", []);
        fillSelect("matarnummer", []);
-       document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj alla fält</span>';
        validateForm();
        return;
    }
-
-   const filtered = allData.filter(item =>
-       item.Uppdrag === uppdrag &&
-       item.Fastighet === fastighet
-   );
-   const adresser = [...new Set(
-       filtered.map(i => normalizeAdress(i.Adress) || "(Ingen adress)")
-   )];
+   const filtered = allData.filter(item => item.Uppdrag === uppdrag && item.Fastighet === fastighet);
+   const adresser = [...new Set(filtered.map(i => i.Adress).filter(Boolean))];
    fillSelect("adress", adresser);
-
    fillSelect("matarnummer", []);
-   document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj alla fält</span>';
    validateForm();
 }
 
@@ -855,66 +775,45 @@ function filterMatarnummer(){
    const uppdrag = document.getElementById("uppdrag").value;
    const fastighet = document.getElementById("fastighet").value;
    const adress = document.getElementById("adress").value;
-
    if (!uppdrag || !fastighet || !adress) {
        fillSelect("matarnummer", []);
-       document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj alla fält</span>';
        validateForm();
        return;
    }
-
-   const actualAdress = normalizeAdress(adress);
-
-   const filtered = allData.filter(item =>
-       item.Uppdrag === uppdrag &&
-       item.Fastighet === fastighet &&
-       normalizeAdress(item.Adress) === actualAdress
+   const filtered = allData.filter(item => 
+       item.Uppdrag === uppdrag && 
+       item.Fastighet === fastighet && 
+       item.Adress === adress
    );
-
-   const matarnummer = [...new Set(filtered.map(i=>i.Mätarnummer).filter(Boolean))];
+   const matarnummer = [...new Set(filtered.map(i => i.Mätarnummer).filter(Boolean))];
    fillSelect("matarnummer", matarnummer);
-
-   document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj alla fält</span>';
    validateForm();
 }
 
 function updateLastChecked(){
    const uppdrag = document.getElementById("uppdrag").value;
    const fastighet = document.getElementById("fastighet").value;
-   const selectedAdress = document.getElementById("adress").value;
-   const selectedMatarnummer = document.getElementById("matarnummer").value;
+   const adress = document.getElementById("adress").value;
+   const matarnummer = document.getElementById("matarnummer").value;
    const latestDiv = document.getElementById("latest");
 
-   if (!uppdrag || !fastighet || !selectedAdress || !selectedMatarnummer) {
-       latestDiv.innerHTML = '<span style="color:#999;">Välj alla fält</span>';
+   if (!uppdrag || !fastighet || !adress || !matarnummer) {
+       latestDiv.innerHTML = 'Välj mätarnummer för att se senaste värde';
        return;
    }
 
-   const actualAdress = normalizeAdress(selectedAdress);
-
-   // Hitta mätaren i allData som nu innehåller senaste avläsning
-   const meter = allData.find(item =>
-       item.Uppdrag === uppdrag &&
-       item.Fastighet === fastighet &&
-       normalizeAdress(item.Adress) === actualAdress &&
-       String(item.Mätarnummer || "").trim() === String(selectedMatarnummer || "").trim()
-   );
-
-   if (meter && meter.senaste_avläsning && meter.senaste_datum) {
-       latestDiv.innerHTML = `<strong>${meter.senaste_avläsning}</strong> (${meter.senaste_datum})`;
-   } else {
-       latestDiv.innerHTML = '<span style="color:#999;">Inget tidigare värde registrerat</span>';
-   }
+   // Enkel implementation - kan utvecklas för att hämta historiska värden
+   latestDiv.innerHTML = 'Inget tidigare värde registrerat';
 }
 
 function fillSelect(id, arr){
-   const s = document.getElementById(id);
-   s.innerHTML = '<option value="">Välj...</option>';
-   arr.forEach(v => {
-       const opt = document.createElement("option");
-       opt.value = v;
-       opt.textContent = v;
-       s.appendChild(opt);
+   const select = document.getElementById(id);
+   select.innerHTML = '<option value="">Välj...</option>';
+   arr.forEach(value => {
+       const option = document.createElement("option");
+       option.value = value;
+       option.textContent = value;
+       select.appendChild(option);
    });
 }
 
@@ -925,14 +824,20 @@ function validateForm() {
    const matarnummer = document.getElementById("matarnummer").value;
    const saveBtn = document.getElementById("saveBtn");
 
-   if(uppdrag && fastighet && adress && matarnummer && meterValue !== null) {
-       saveBtn.disabled = false;
-   } else {
-       saveBtn.disabled = true;
-   }
+   saveBtn.disabled = !(uppdrag && fastighet && adress && matarnummer && meterValue !== null);
 }
 
-// SPARA FUNKTION MED FORM-SUBMIT (FUNGERAR ALLTID)
+function clearForm() {
+   document.getElementById("uppdrag").selectedIndex = 0;
+   document.getElementById("fastighet").selectedIndex = 0;
+   document.getElementById("adress").selectedIndex = 0;
+   document.getElementById("matarnummer").selectedIndex = 0;
+   document.getElementById("latest").innerHTML = 'Välj mätarnummer för att se senaste värde';
+   meterValue = null;
+   document.getElementById('noteValueBtn').textContent = 'Notera värde';
+   validateForm();
+}
+
 async function save(){
    const uppdrag = document.getElementById("uppdrag").value;
    const fastighet = document.getElementById("fastighet").value;
@@ -949,12 +854,10 @@ async function save(){
    const timeStr = now.toTimeString().split(' ')[0];
    const dateTimeStr = `${dateStr} ${timeStr}`;
 
-   const adressToSend = normalizeAdress(adress);
-
    const body = {
        uppdrag,
        fastighet,
-       adress: adressToSend,
+       adress,
        matarnummer,
        avläst_värde: meterValue,
        datum_tid: dateTimeStr
@@ -967,59 +870,37 @@ async function save(){
 
        console.log("📤 Skickar data:", body);
 
-       // Använd form-submit för POST - fungerar alltid
-       const form = document.createElement('form');
-       form.method = 'POST';
-       form.action = API_URL;
-       form.target = '_blank';
-       
-       Object.keys(body).forEach(key => {
-           const input = document.createElement('input');
-           input.type = 'hidden';
-           input.name = key;
-           input.value = body[key];
-           form.appendChild(input);
+       const response = await fetch(API_URL, {
+           method: "POST",
+           headers: {"Content-Type": "application/x-www-form-urlencoded"},
+           body: new URLSearchParams(body)
        });
+
+       const result = await response.json();
+       console.log("✅ Svar:", result);
+
+       // Visa bekräftelse
+       const modal = document.getElementById("savedModal");
+       modal.classList.add('show');
        
-       document.body.appendChild(form);
-       form.submit();
-       document.body.removeChild(form);
-
-       // Simulera lyckat sparande (vi kan inte få response pga CORS)
        setTimeout(() => {
-           // Ladda om datan för att få senaste avläsningen
-           loadData();
-           
-           const modal = document.getElementById("savedModal");
-           modal.classList.add('show');
-           
-           setTimeout(() => {
-               modal.classList.remove('show');
-           }, 2000);
+           modal.classList.remove('show');
+       }, 2000);
 
-           // Återställ formuläret
-           document.getElementById("matarnummer").selectedIndex = 0;
-           document.getElementById("latest").innerHTML = '<span style="color:#999;">Välj mätarnummer</span>';
-
-           meterValue = null;
-           document.getElementById('noteValueBtn').textContent = 'Notera värde';
-
-           saveBtn.innerHTML = "Spara avläsning";
-           validateForm();
-
-           console.log("💾 Uppdrag, fastighet och adress bevaras:", savedSelections);
-       }, 1000);
-
+       // Återställ
+       clearForm();
+       
    } catch(err) {
        console.error("❌ Fel vid sparande:", err);
        alert("Kunde inte spara. Försök igen.");
+   } finally {
        const saveBtn = document.getElementById("saveBtn");
        saveBtn.innerHTML = "Spara avläsning";
        validateForm();
    }
 }
 
-// Initiera appen
+// Starta appen
 loadData();
 </script>
 </body>
