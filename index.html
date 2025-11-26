@@ -2,7 +2,10 @@
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Mätaravläsning</title> <meta name="description" content="Mätaravläsning enkelt och effektivt"> <meta name="theme-color" content="#1a1a2e">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Mätaravläsning</title> 
+<meta name="description" content="Mätaravläsning enkelt och effektivt"> 
+<meta name="theme-color" content="#1a1a2e">
 
 <style>
 :root {
@@ -101,7 +104,7 @@ select, input {
  font-weight:500;
  transition: all 0.3s ease;
  appearance: none;
- background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cmax.vanleeuwen%40newsec.se%7Cbc4d00ba27a4434cb29c08de2cdae6e3%7Ca76b06e3f40049db84dfe9a75fa473f6%7C1%7C0%7C638997515890936004%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=xYYsGkBW2IhwLLfjI%2Fzmfh1DG5BMp0Gd2blen02Vpws%3D&reserved=0' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
  background-repeat: no-repeat;
  background-position: right 18px center;
  background-size: 22px;
@@ -636,7 +639,7 @@ select option {
 <div id="savedModal" class="modal-overlay"> <div class="modal-content"> <div class="checkmark-circle"> <svg class="checkmark" viewBox="0 0 52 52"> <polyline points="14,27 22,35 38,19" /> </svg> </div> <p class="saved-text">Avläsning Sparad!</p> <p class="saved-subtext">Informationen har uppdaterats</p> </div> </div>
 
 <script>
-// KORREKT API URL
+// KORREKT API URL - SAMMA SOM I JORDFELSBYTAR-APPEN
 const API_URL = "https://script.google.com/macros/s/AKfycbymZ7YkbKl4QNu3vjkNmry3lGiKLO6HK5DOoz8l7HAjBtnfs05oNhEuZpjhaG5SBV3D/exec";
 let allData = [];
 let currentNumber = "0";
@@ -742,58 +745,47 @@ function restoreSelections() {
    }
 }
 
-// NY JSONP LOAD DATA FUNKTION
-function loadData(){
+// NY ENKEL LOAD DATA FUNKTION - SAMMA SOM I JORDFELSBYTAR-APPEN
+async function loadData(){
    document.getElementById("loader").style.display="block";
    document.getElementById("app").style.display="none";
 
-   const callbackName = 'jsonpCallback_' + Date.now();
-   
-   window[callbackName] = function(response) {
-       delete window[callbackName];
+   try {
+       const res = await fetch(API_URL);
+       const json = await res.json();
+       allData = json.data || [];
        
-       if (response.status === 'success') {
-           allData = response.data || [];
-           console.log("✅ Data loaded via JSONP:", allData.length, "items");
-           
-           fillSelect("uppdrag",[...new Set(allData.map(i=>i.uppdrag).filter(Boolean))]);
-           restoreSelections();
-           
-           document.getElementById("uppdrag").addEventListener("change", function() {
-               saveSelections();
-               filterFastighet();
-           });
-           document.getElementById("fastighet").addEventListener("change", function() {
-               saveSelections();
-               filterAdress();
-           });
-           document.getElementById("adress").addEventListener("change", function() {
-               saveSelections();
-               filterMatarnummer();
-           });
-           document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
-           
-           document.getElementById("uppdrag").addEventListener("change", validateForm);
-           document.getElementById("fastighet").addEventListener("change", validateForm);
-           document.getElementById("adress").addEventListener("change", validateForm);
-           document.getElementById("matarnummer").addEventListener("change", validateForm);
-           
-       } else {
-           console.error("❌ Error from server:", response.message);
-       }
+       console.log("✅ Data loaded:", allData.length, "items");
        
-       document.getElementById("loader").style.display="none";
-       document.getElementById("app").style.display="block";
-   };
-   
-   const script = document.createElement('script');
-   script.src = API_URL + '?callback=' + callbackName;
-   script.onerror = function() {
-       console.error("❌ JSONP failed");
-       document.getElementById("loader").style.display="none";
-       document.getElementById("app").style.display="block";
-   };
-   document.body.appendChild(script);
+       fillSelect("uppdrag",[...new Set(allData.map(i=>i.uppdrag).filter(Boolean))]);
+       restoreSelections();
+       
+       document.getElementById("uppdrag").addEventListener("change", function() {
+           saveSelections();
+           filterFastighet();
+       });
+       document.getElementById("fastighet").addEventListener("change", function() {
+           saveSelections();
+           filterAdress();
+       });
+       document.getElementById("adress").addEventListener("change", function() {
+           saveSelections();
+           filterMatarnummer();
+       });
+       document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
+       
+       document.getElementById("uppdrag").addEventListener("change", validateForm);
+       document.getElementById("fastighet").addEventListener("change", validateForm);
+       document.getElementById("adress").addEventListener("change", validateForm);
+       document.getElementById("matarnummer").addEventListener("change", validateForm);
+       
+       console.log("✅ Data loaded, event listeners attached");
+   } catch (error) {
+       console.error("❌ Error loading data:", error);
+   }
+
+   document.getElementById("loader").style.display="none";
+   document.getElementById("app").style.display="block";
 }
 
 function filterFastighet(){
@@ -971,7 +963,7 @@ async function save(){
        console.log("✅ Svar från Google Sheets:", result);
 
        // Ladda om data för att få senaste avläsningen
-       loadData();
+       await loadData();
        updateLastChecked();
 
        const modal = document.getElementById("savedModal");
