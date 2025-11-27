@@ -21,9 +21,7 @@
  --border-radius: 16px;
 }
 
-* {
- box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
  margin:0;
@@ -76,9 +74,7 @@ body {
  backdrop-filter: blur(10px);
 }
 
-.form-group {
- margin-bottom: 16px;
-}
+.form-group { margin-bottom: 16px; }
 
 label {
  display:block;
@@ -233,9 +229,7 @@ select:focus, input:focus {
  padding: 20px;
 }
 
-.numeric-keyboard-overlay.show {
- display: flex;
-}
+.numeric-keyboard-overlay.show { display: flex; }
 
 .numeric-keyboard {
  background: var(--secondary);
@@ -246,22 +240,11 @@ select:focus, input:focus {
  max-width: 400px;
  border: 1px solid rgba(255, 255, 255, 0.1); }
 
-.keyboard-header {
- text-align: center;
- margin-bottom: 20px;
-}
+.keyboard-header { text-align: center; margin-bottom: 20px; }
 
-.keyboard-title {
- font-size: 24px;
- font-weight: 700;
- color: var(--text);
- margin-bottom: 8px;
-}
+.keyboard-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 
-.keyboard-subtitle {
- font-size: 16px;
- color: var(--text-secondary);
-}
+.keyboard-subtitle { font-size: 16px; color: var(--text-secondary); }
 
 .keyboard-display {
  background: rgba(0, 0, 0, 0.3);
@@ -304,23 +287,13 @@ select:focus, input:focus {
  transform: translateY(2px);
  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
 
-.keyboard-key.wide {
- flex: 2;
-}
+.keyboard-key.wide { flex: 2; }
 
-.keyboard-key.clear {
- background: #f44336;
-}
+.keyboard-key.clear { background: #f44336; }
 
-.keyboard-key.submit {
- background: var(--accent);
- font-size: 20px;
-}
+.keyboard-key.submit { background: var(--accent); font-size: 20px; }
 
-.fade-in {
- opacity:0;
- animation:fadeIn 0.7s ease forwards;
-}
+.fade-in { opacity:0; animation:fadeIn 0.7s ease forwards; }
 
 @keyframes fadeIn {
  0%{opacity:0; transform:translateY(10px);}  100%{opacity:1; transform:translateY(0);} }
@@ -335,10 +308,7 @@ select:focus, input:focus {
  animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
- 0% { transform: rotate(0deg); }
- 100% { transform: rotate(360deg); }
-}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 .modal-overlay {
  position: fixed;
@@ -355,9 +325,7 @@ select:focus, input:focus {
  padding: 20px;
 }
 
-.modal-overlay.show {
- display: flex;
-}
+.modal-overlay.show { display: flex; }
 
 .modal-content {
  background: var(--secondary);
@@ -370,8 +338,7 @@ select:focus, input:focus {
  width: 340px;
  border: 1px solid rgba(255, 255, 255, 0.1); }
 
-@keyframes scaleIn {
- 0% { transform: scale(0.8); opacity: 0; }  100% { transform: scale(1); opacity: 1; } }
+@keyframes scaleIn { 0% { transform: scale(0.8); opacity: 0; }  100% { transform: scale(1); opacity: 1; } }
 
 .checkmark-circle {
  width: 100px;
@@ -393,160 +360,54 @@ select:focus, input:focus {
  animation: checkmarkDraw 0.5s ease forwards; }
 
 @keyframes checkmarkDraw {
- 0% {
-   stroke-dasharray: 0, 100;
-   opacity: 0;
- }
- 100% {
-   stroke-dasharray: 100, 100;
-   opacity: 1;
- }
+ 0% { stroke-dasharray: 0, 100; opacity: 0; }
+ 100% { stroke-dasharray: 100, 100; opacity: 1; }
 }
 
-.saved-text {
- font-size: 28px;
- font-weight: bold;
- color: var(--text);
- margin-bottom: 10px;
-}
+.saved-text { font-size: 28px; font-weight: bold; color: var(--text); margin-bottom: 10px; }
 
-.saved-subtext {
- font-size: 18px;
- color: var(--text-secondary);
-}
+.saved-subtext { font-size: 18px; color: var(--text-secondary); }
 
-.icon {
- width: 26px;
- height: 26px;
- stroke: var(--accent);
- stroke-width: 2.2;
- fill: none;
-}
+.icon { width: 26px; height: 26px; stroke: var(--accent); stroke-width: 2.2; fill: none; }
 
-.footer {
- text-align: center;
- padding: 20px;
- color: var(--text-secondary);
- font-size: 16px;
- margin-top: 16px;
-}
+.footer { text-align: center; padding: 20px; color: var(--text-secondary); font-size: 16px; margin-top: 16px; }
 
 @media (max-width: 480px) {
- body {
-   font-size: 18px;
- }
-
- .topbar {
-   font-size: 24px;
-   padding: 18px 12px;
- }
-
- .card {
-   padding: 18px;
- }
-
- .form-group {
-   margin-bottom: 14px;
- }
-
- label {
-   font-size: 20px;
- }
-
- select, input {
-   padding: 16px;
-   font-size: 20px;
-   min-height: 60px;
- }
-
- .save-btn, .note-value-btn, .clear-btn {
-   padding: 18px;
-   font-size: 20px;
-   min-height: 60px;
- }
-
- .note-value-btn, .clear-btn {
-   font-size: 18px;
-   padding: 18px 8px;
- }
-
- .last-checked-display {
-   font-size: 20px;
-   padding: 16px;
-   min-height: 60px;
- }
-
- .saved-text {
-   font-size: 26px;
- }
-
- .numeric-keyboard {
-   padding: 20px;
- }
-
- .keyboard-key {
-   padding: 16px 8px;
-   font-size: 20px;
-   min-height: 60px;
- }
-
- .keyboard-display {
-   font-size: 24px;
-   padding: 16px;
-   min-height: 60px;
- }
-
- .keyboard-title {
-   font-size: 22px;
- }
+ body { font-size: 18px; }
+ .topbar { font-size: 24px; padding: 18px 12px; }
+ .card { padding: 18px; }
+ .form-group { margin-bottom: 14px; }
+ label { font-size: 20px; }
+ select, input { padding: 16px; font-size: 20px; min-height: 60px; }
+ .save-btn, .note-value-btn, .clear-btn { padding: 18px; font-size: 20px; min-height: 60px; }
+ .note-value-btn, .clear-btn { font-size: 18px; padding: 18px 8px; }
+ .last-checked-display { font-size: 20px; padding: 16px; min-height: 60px; }
+ .saved-text { font-size: 26px; }
+ .numeric-keyboard { padding: 20px; }
+ .keyboard-key { padding: 16px 8px; font-size: 20px; min-height: 60px; }
+ .keyboard-display { font-size: 24px; padding: 16px; min-height: 60px; }
+ .keyboard-title { font-size: 22px; }
 }
 
-::-webkit-scrollbar {
- width: 10px;
-}
-
-::-webkit-scrollbar-track {
- background: rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
- background: var(--accent);
- border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
- background: rgba(46, 125, 50, 0.8);
-}
-
-select:focus, input:focus, button:focus {
- outline: 2px solid var(--accent);
- outline-offset: 2px;
-}
-
-select option {
- background: var(--secondary);
- color: var(--text);
- font-size: 20px;
- padding: 12px;
- height: 50px;
-}
-
-select {
- font-size: 22px !important;
-}
-
-select option {
- font-size: 20px !important;
- padding: 15px 10px !important;
- line-height: 1.5 !important;
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(46, 125, 50, 0.8); }
+select:focus, input:focus, button:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+select option { background: var(--secondary); color: var(--text); font-size: 20px; padding: 12px; height: 50px; }
+select { font-size: 22px !important; }
+select option { font-size: 20px !important; padding: 15px 10px !important; line-height: 1.5 !important; }
 </style>
 </head>
 
 <body>
 <div class="topbar">
  <svg class="icon" width="28" height="28" viewBox="0 0 24 24">
-   <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>  </svg>  Mätaravläsning </div> 
+   <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>  
+ </svg>  
+ Mätaravläsning 
+</div> 
+
 <div id="loader" class="loader"></div>
 
 <div class="app" id="app">
@@ -555,7 +416,10 @@ select option {
 <label>
  <svg class="icon" width="26" height="26" viewBox="0 0 24 24">
    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-   <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>  </svg>  Uppdrag </label> 
+   <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>  
+ </svg>  
+ Uppdrag 
+</label> 
 <select id="uppdrag"></select> 
 </div>
 
@@ -563,7 +427,10 @@ select option {
 <label>
  <svg class="icon" width="26" height="26" viewBox="0 0 24 24">
    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-   <polyline points="9 22 9 12 15 12 15 22"/>  </svg>  Fastighet </label> 
+   <polyline points="9 22 9 12 15 12 15 22"/>  
+ </svg>  
+ Fastighet 
+</label> 
 <select id="fastighet"></select> 
 </div>
 
@@ -595,313 +462,132 @@ select option {
    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
    <line x1="16" y1="2" x2="16" y2="6"/>
    <line x1="8" y1="2" x2="8" y2="6"/>
-   <line x1="3" y1="10" x2="21" y2="10"/>  </svg>  Senast avläst värde:
+   <line x1="3" y1="10" x2="21" y2="10"/>  
+ </svg>  
+ Senast avläst värde:
 </label>
 <div id="latest" class="last-checked-display">Välj mätarnummer för att se senaste värde</div>
 </div>
-</div>
 
 <div class="buttons-container">
- <button class="note-value-btn" id="noteValueBtn" onclick="openNumericKeyboard()">Notera värde</button>  
- <button class="save-btn" id="saveBtn" onclick="save()">Spara avläsning</button>  
- <button class="clear-btn" id="clearBtn" onclick="clearForm()">Rensa</button> 
+<button class="note-value-btn" id="noteValueBtn" onclick="showNumericKeyboard()">Notera värde</button>
+<button class="clear-btn" onclick="clearForm()">Rensa</button>
 </div>
-
-<div class="footer">
- Mätaravläsningen &copy; Max 2025
+<button class="save-btn" id="saveBtn" onclick="save()" disabled>Spara</button>
 </div>
 </div>
 
-<div id="numericKeyboard" class="numeric-keyboard-overlay">  
- <div class="numeric-keyboard">
-   <div class="keyboard-header">
-     <div class="keyboard-title">Mätarvärde</div>
-     <div class="keyboard-subtitle">Ange mätarvärde</div>
+<div class="modal-overlay" id="savedModal">
+ <div class="modal-content">
+   <div class="checkmark-circle">
+     <svg class="checkmark" viewBox="0 0 52 52">
+       <path d="M14 27l7 7 17-17"/>
+     </svg>
    </div>
-   <div class="keyboard-display" id="keyboardDisplay">0</div>
-   <div class="keyboard-row">
-     <button class="keyboard-key" onclick="addNumber(1)">1</button>
-     <button class="keyboard-key" onclick="addNumber(2)">2</button>
-     <button class="keyboard-key" onclick="addNumber(3)">3</button>
-   </div>
-   <div class="keyboard-row">
-     <button class="keyboard-key" onclick="addNumber(4)">4</button>
-     <button class="keyboard-key" onclick="addNumber(5)">5</button>
-     <button class="keyboard-key" onclick="addNumber(6)">6</button>
-   </div>
-   <div class="keyboard-row">
-     <button class="keyboard-key" onclick="addNumber(7)">7</button>
-     <button class="keyboard-key" onclick="addNumber(8)">8</button>
-     <button class="keyboard-key" onclick="addNumber(9)">9</button>
-   </div>
-   <div class="keyboard-row">
-     <button class="keyboard-key" onclick="addNumber(0)">0</button>
-     <button class="keyboard-key" onclick="addDecimal()">.</button>
-     <button class="keyboard-key clear" onclick="clearDisplay()">C</button>
-   </div>
-   <div class="keyboard-row">
-     <button class="keyboard-key wide submit" onclick="submitNumber()">Klar</button>
-   </div>
+   <div class="saved-text">Sparat!</div>
+   <div class="saved-subtext">Värdet har registrerats</div>
  </div>
 </div>
 
-<div id="savedModal" class="modal-overlay"> 
- <div class="modal-content"> 
-   <div class="checkmark-circle"> 
-     <svg class="checkmark" viewBox="0 0 52 52"> 
-       <polyline points="14,27 22,35 38,19" /> 
-     </svg> 
-   </div> 
-   <p class="saved-text">Avläsning Sparad!</p> 
-   <p class="saved-subtext">Informationen har uppdaterats</p> 
- </div> 
-</div>
-
 <script>
-// ANVÄND SAMMA URL-SYSTEM SOM DIN JORDFELSBYTAR-APP
-const API_URL = "https://script.google.com/macros/s/AKfycbymZ7YkbKl4QNu3vjkNmry3lGiKLO6HK5DOoz8l7HAjBtnfs05oNhEuZpjhaG5SBV3D/exec";
+const API_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
 let allData = [];
-let currentNumber = "0";
 let meterValue = null;
 
-// NUMERISKT TANGENTBORD
-function openNumericKeyboard() {
-   currentNumber = meterValue ? meterValue.toString() : "0";
-   document.getElementById('keyboardDisplay').textContent = currentNumber;
-   document.getElementById('numericKeyboard').classList.add('show');
-}
-
-function closeNumericKeyboard() {
-   document.getElementById('numericKeyboard').classList.remove('show');
-}
-
-function addNumber(number) {
-   if (currentNumber === "0") {
-       currentNumber = number.toString();
-   } else {
-       currentNumber += number.toString();
-   }
-   document.getElementById('keyboardDisplay').textContent = currentNumber;
-}
-
-function addDecimal() {
-   if (!currentNumber.includes('.')) {
-       currentNumber += '.';
-       document.getElementById('keyboardDisplay').textContent = currentNumber;
-   }
-}
-
-function clearDisplay() {
-   currentNumber = "0";
-   document.getElementById('keyboardDisplay').textContent = currentNumber;
-}
-
-function submitNumber() {
-   const numberValue = parseFloat(currentNumber);
-   meterValue = numberValue;
-   const noteValueBtn = document.getElementById('noteValueBtn');
-   noteValueBtn.textContent = `${numberValue}`;
-   closeNumericKeyboard();
-   validateForm();
-}
-
-// HUVUDFUNKTIONER - SAMMA SOM JORDFELSBYTAR
-async function loadData(){
-   document.getElementById("loader").style.display = "block";
-   document.getElementById("app").style.display = "none";
-
-   try {
-       const res = await fetch(API_URL);
-       const json = await res.json();
-       allData = json.data || [];
-       
-       console.log("✅ Data loaded:", allData.length, "items");
-       
-       fillSelect("uppdrag", [...new Set(allData.map(i => i.Uppdrag).filter(Boolean))]);
-       
-       // Event listeners
-       document.getElementById("uppdrag").addEventListener("change", filterFastighet);
-       document.getElementById("fastighet").addEventListener("change", filterAdress);
-       document.getElementById("adress").addEventListener("change", filterMatarnummer);
-       document.getElementById("matarnummer").addEventListener("change", updateLastChecked);
-       
-       document.getElementById("uppdrag").addEventListener("change", validateForm);
-       document.getElementById("fastighet").addEventListener("change", validateForm);
-       document.getElementById("adress").addEventListener("change", validateForm);
-       document.getElementById("matarnummer").addEventListener("change", validateForm);
-       
-   } catch (error) {
-       console.error("❌ Error loading data:", error);
-   }
-
-   document.getElementById("loader").style.display = "none";
-   document.getElementById("app").style.display = "block";
-}
-
-function filterFastighet(){
-   const uppdrag = document.getElementById("uppdrag").value;
-   if (!uppdrag) {
-       fillSelect("fastighet", []);
-       fillSelect("adress", []);
-       fillSelect("matarnummer", []);
-       validateForm();
-       return;
-   }
-   const filtered = allData.filter(item => item.Uppdrag === uppdrag);
-   const fastigheter = [...new Set(filtered.map(i => i.Fastighet).filter(Boolean))];
-   fillSelect("fastighet", fastigheter);
-   fillSelect("adress", []);
-   fillSelect("matarnummer", []);
-   validateForm();
-}
-
-function filterAdress(){
-   const uppdrag = document.getElementById("uppdrag").value;
-   const fastighet = document.getElementById("fastighet").value;
-   if (!uppdrag || !fastighet) {
-       fillSelect("adress", []);
-       fillSelect("matarnummer", []);
-       validateForm();
-       return;
-   }
-   const filtered = allData.filter(item => item.Uppdrag === uppdrag && item.Fastighet === fastighet);
-   const adresser = [...new Set(filtered.map(i => i.Adress).filter(Boolean))];
-   fillSelect("adress", adresser);
-   fillSelect("matarnummer", []);
-   validateForm();
-}
-
-function filterMatarnummer(){
-   const uppdrag = document.getElementById("uppdrag").value;
-   const fastighet = document.getElementById("fastighet").value;
-   const adress = document.getElementById("adress").value;
-   if (!uppdrag || !fastighet || !adress) {
-       fillSelect("matarnummer", []);
-       validateForm();
-       return;
-   }
-   const filtered = allData.filter(item => 
-       item.Uppdrag === uppdrag && 
-       item.Fastighet === fastighet && 
-       item.Adress === adress
-   );
-   const matarnummer = [...new Set(filtered.map(i => i.Mätarnummer).filter(Boolean))];
-   fillSelect("matarnummer", matarnummer);
-   validateForm();
+async function loadData() {
+  try {
+    const res = await fetch(API_URL);
+    const json = await res.json();
+    if(json.status === "success") {
+      allData = json.data;
+      const uppdragItems = [...new Set(allData.map(row=>row.Uppdrag))];
+      fillSelect("uppdrag", uppdragItems);
+      document.getElementById("loader").style.display="none";
+      document.getElementById("app").style.display="block";
+    }
+  } catch(e){ console.error(e); }
 }
 
 function updateLastChecked(){
-   const uppdrag = document.getElementById("uppdrag").value;
-   const fastighet = document.getElementById("fastighet").value;
-   const adress = document.getElementById("adress").value;
-   const matarnummer = document.getElementById("matarnummer").value;
-   const latestDiv = document.getElementById("latest");
+    const uppdrag = document.getElementById("uppdrag").value;
+    const fastighet = document.getElementById("fastighet").value;
+    const adress = document.getElementById("adress").value;
+    const matarnummer = document.getElementById("matarnummer").value;
 
-   if (!uppdrag || !fastighet || !adress || !matarnummer) {
-       latestDiv.innerHTML = 'Välj mätarnummer för att se senaste värde';
-       return;
-   }
+    if(!uppdrag || !fastighet || !adress || !matarnummer){
+        document.getElementById("latest").textContent = "Välj mätarnummer för att se senaste värde";
+        return;
+    }
 
-   // Enkel implementation - kan utvecklas för att hämta historiska värden
-   latestDiv.innerHTML = 'Inget tidigare värde registrerat';
+    const selected = allData.find(row => 
+        row.Uppdrag === uppdrag &&
+        row.Fastighet === fastighet &&
+        row.Adress === adress &&
+        row.Mätarnummer === matarnummer
+    );
+
+    document.getElementById("latest").textContent =
+        selected && selected.SenasteVärde ? selected.SenasteVärde : "Inget tidigare värde registrerat";
+    validateForm();
 }
 
-function fillSelect(id, arr){
-   const select = document.getElementById(id);
-   select.innerHTML = '<option value="">Välj...</option>';
-   arr.forEach(value => {
-       const option = document.createElement("option");
-       option.value = value;
-       option.textContent = value;
-       select.appendChild(option);
-   });
+function fillSelect(id, items){
+    const el = document.getElementById(id);
+    el.innerHTML = `<option value="">Välj...</option>` + 
+        items.map(i => `<option value="${i}">${i}</option>`).join("");
 }
 
-function validateForm() {
-   const uppdrag = document.getElementById("uppdrag").value;
-   const fastighet = document.getElementById("fastighet").value;
-   const adress = document.getElementById("adress").value;
-   const matarnummer = document.getElementById("matarnummer").value;
-   const saveBtn = document.getElementById("saveBtn");
+function validateForm(){
+    const enabled =
+        document.getElementById("uppdrag").value &&
+        document.getElementById("fastighet").value &&
+        document.getElementById("adress").value &&
+        document.getElementById("matarnummer").value &&
+        meterValue !== null;
 
-   saveBtn.disabled = !(uppdrag && fastighet && adress && matarnummer && meterValue !== null);
-}
-
-function clearForm() {
-   document.getElementById("uppdrag").selectedIndex = 0;
-   document.getElementById("fastighet").selectedIndex = 0;
-   document.getElementById("adress").selectedIndex = 0;
-   document.getElementById("matarnummer").selectedIndex = 0;
-   document.getElementById("latest").innerHTML = 'Välj mätarnummer för att se senaste värde';
-   meterValue = null;
-   document.getElementById('noteValueBtn').textContent = 'Notera värde';
-   validateForm();
+    document.getElementById("saveBtn").disabled = !enabled;
 }
 
 async function save(){
-   const uppdrag = document.getElementById("uppdrag").value;
-   const fastighet = document.getElementById("fastighet").value;
-   const adress = document.getElementById("adress").value;
-   const matarnummer = document.getElementById("matarnummer").value;
+    const payload = {
+        uppdrag : document.getElementById("uppdrag").value,
+        fastighet : document.getElementById("fastighet").value,
+        adress : document.getElementById("adress").value,
+        matarnummer : document.getElementById("matarnummer").value,
+        varde : meterValue
+    };
 
-   if(!uppdrag || !fastighet || !adress || !matarnummer || meterValue === null){
-       alert("Fyll i alla fält och notera ett värde!");
-       return;
-   }
+    const res = await fetch(API_URL,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify(payload)
+    });
 
-   const now = new Date();
-   const dateStr = now.toISOString().split('T')[0];
-   const timeStr = now.toTimeString().split(' ')[0];
-   const dateTimeStr = `${dateStr} ${timeStr}`;
-
-   const body = {
-       uppdrag,
-       fastighet,
-       adress,
-       matarnummer,
-       avläst_värde: meterValue,
-       datum_tid: dateTimeStr
-   };
-
-   try {
-       const saveBtn = document.getElementById("saveBtn");
-       saveBtn.disabled = true;
-       saveBtn.innerHTML = "SPARAR...";
-
-       console.log("📤 Skickar data:", body);
-
-       const response = await fetch(API_URL, {
-           method: "POST",
-           headers: {"Content-Type": "application/x-www-form-urlencoded"},
-           body: new URLSearchParams(body)
-       });
-
-       const result = await response.json();
-       console.log("✅ Svar:", result);
-
-       // Visa bekräftelse
-       const modal = document.getElementById("savedModal");
-       modal.classList.add('show');
-       
-       setTimeout(() => {
-           modal.classList.remove('show');
-       }, 2000);
-
-       // Återställ
-       clearForm();
-       
-   } catch(err) {
-       console.error("❌ Fel vid sparande:", err);
-       alert("Kunde inte spara. Försök igen.");
-   } finally {
-       const saveBtn = document.getElementById("saveBtn");
-       saveBtn.innerHTML = "Spara avläsning";
-       validateForm();
-   }
+    if(res.ok){
+        showSaved();
+        document.getElementById("noteValueBtn").textContent = "Notera värde";
+        meterValue = null;
+    }
 }
 
-// Starta appen
-loadData();
+function showSaved(){
+    const modal = document.getElementById("savedModal");
+    modal.classList.add("show");
+    setTimeout(()=> modal.classList.remove("show"),1600);
+}
+
+function clearForm(){
+    document.getElementById("uppdrag").value = "";
+    document.getElementById("fastighet").innerHTML = "";
+    document.getElementById("adress").innerHTML = "";
+    document.getElementById("matarnummer").innerHTML = "";
+    document.getElementById("latest").textContent = "Välj mätarnummer för att se senaste värde";
+    meterValue = null;
+    document.getElementById("noteValueBtn").textContent = "Notera värde";
+    validateForm();
+}
+
+window.onload = loadData;
 </script>
 </body>
 </html>
